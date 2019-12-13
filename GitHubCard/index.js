@@ -91,19 +91,24 @@
   luishrd
   bigknell
 */
+
 function cardFactory (info){
-//create elements
+
+  //create elements
   const card = document.createElement('div');
   const cardImg = document.createElement('img');
   const cardInfo = document.createElement('div');
   const name = document.createElement('h3');
   const userName = document.createElement('p');
   const location = document.createElement('p');
+  const repos = document.createElement('p');
   const profile = document.createElement('p');
   const adLink = document.createElement('a');
   const followers = document.createElement('p');
   const following = document.createElement('p');
   const bio = document.createElement('p');
+  const public = document.createElement('p');
+  const span = document.createElement('span');
   
 
   //create structure
@@ -112,41 +117,50 @@ function cardFactory (info){
   cardInfo.appendChild(name);
   cardInfo.appendChild(userName);
   cardInfo.appendChild(location);
+  cardInfo.appendChild(repos);
   cardInfo.appendChild(profile);
   profile.appendChild(adLink);
   cardInfo.appendChild(followers);
   cardInfo.appendChild(following);
   cardInfo.appendChild(bio);
+  cardInfo.appendChild(public)
+  cardInfo.appendChild(span);
+  
 
   //set content
   cardImg.setAttribute('src', info.avatar_url);
   name.textContent = info.name;
   userName.textContent = info.login;
   location.textContent = info.location;
+  repos.textContent = info.repos_url;
   adLink.textContent = info.html_url;
   followers.textContent = info.followers;
   following.textContent = info.following;
   bio.textContent = info.bio;
+  public.textContent = info.public_repos;
+  span.textContent = '\u25bc';
   
 
   //apply styles
   card.classList.add('card');
-  // cardImg.classList.add('card','img');
   cardInfo.classList.add('card-info');
   name.classList.add('name');
   userName.classList.add('username');
+  span.classList.add('expandButton');
+
+  span.addEventListener('click', () => {
+    card.classList.toggle('article-open')
+  });
 
   
 
   return card;
 };
-//get div container
+
+
+//Grab div container
 const add = document.querySelector('.cards');
 
-//iterate over array
-// me.map(parameter => {
-//   add.appendChild(cardFactory(parameter));
-// });
 
 
 
@@ -169,35 +183,3 @@ followersArray.map(parameter => {
       console.log(err);
     })
   })
-// axios.get('https://api.github.com/users/')
-//    .then(response => {
-//      const we = response.data
-//       console.log(we);
-//     followersArray.map(parameter => {
-//       add.appendChild(cardFactory(parameter))
-//     })
-
-//    })
-//    .catch(err => {
-//      console.log(err);
-//    });
-
-
-
-
-// followersArray.map(parameter => {
-//   add.appendChild(cardFactory(parameter));
-// });
-
-// axios.get('https://api.github.com/users/')
-//    .then(response => {
-//      const we = response.data
-//       console.log(we);
-//     followersArray.map(parameter => {
-//       add.appendChild(cardFactory(parameter))
-//     })
-
-//    })
-//    .catch(err => {
-//      console.log(err);
-//    });
